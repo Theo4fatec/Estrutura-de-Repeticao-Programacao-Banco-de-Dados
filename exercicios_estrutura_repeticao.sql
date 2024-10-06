@@ -130,3 +130,71 @@ BEGIN
 END;
 $$
 
+--Exercicio 1.1 - Positive Numbers com WHILE
+DO
+$$
+DECLARE
+    numero1 INT := 0;
+    numero2 INT := 0;
+    numero3 INT := 0;
+    numero4 INT := 0;
+    numero5 INT := 0;
+    numero6 INT := 0;
+    contador1 INT := 0;
+    contador2 INT := 0;
+    contador3 INT := 0;
+    contador4 INT := 0;
+    contador5 INT := 0;
+    contador6 INT := 0;
+    contador_final INT;
+BEGIN
+    WHILE numero1 = 0 LOOP
+        numero1 := valor_aleatorio_entre(-50,50);
+    END LOOP;
+    WHILE numero2 = 0 LOOP
+        numero2 := valor_aleatorio_entre(-50,50);
+    END LOOP;
+    WHILE numero3 = 0 LOOP
+        numero3 := valor_aleatorio_entre(-50,50);
+    END LOOP;
+    WHILE numero4 = 0 LOOP
+        numero4 := valor_aleatorio_entre(-50,50);
+    END LOOP;
+    WHILE numero5 = 0 LOOP
+        numero5 := valor_aleatorio_entre(-50,50);
+    END LOOP;
+    WHILE numero6 = 0 LOOP
+        numero6 := valor_aleatorio_entre(-50,50);
+    END LOOP;
+
+    IF numero1 > 0 THEN
+        contador1:= contador1 + 1;
+    END IF;
+    IF numero2 > 0 THEN
+        contador2 := contador2 + 1;
+    END IF;
+    IF numero3 > 0 THEN
+        contador3 := contador3 + 1;
+    END IF;
+    IF numero4 > 0 THEN
+        contador4:= contador4 + 1;
+    END IF;
+    IF numero5 > 0 THEN
+        contador5:= contador5 + 1;
+    END IF;
+    IF numero6 > 0 THEN
+        contador6 := contador6 + 1;
+    END IF;
+
+    contador_final := contador1 + contador2 + contador3 + contador4 + contador5 + contador6;
+    
+    RAISE NOTICE '%', numero1;
+    RAISE NOTICE '%', numero2;
+    RAISE NOTICE '%', numero3;
+    RAISE NOTICE '%', numero4;
+    RAISE NOTICE '%', numero5;
+    RAISE NOTICE '%', numero6;
+    RAISE NOTICE '';
+    RAISE NOTICE '% valores positivos', contador_final;
+END;
+$$
