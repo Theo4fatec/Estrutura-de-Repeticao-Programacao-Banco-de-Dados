@@ -273,3 +273,32 @@ BEGIN
     RAISE NOTICE '% valores positivos', contador_final;
 END;
 $$
+
+--Exercicio 1.1 - Positive Numbers com FOREACH
+DO
+$$
+DECLARE
+    todos_numeros INT[] := ARRAY[
+        valor_aleatorio_entre(-50, 50),
+        valor_aleatorio_entre(-50, 50), 
+        valor_aleatorio_entre(-50, 50), 
+        valor_aleatorio_entre(-50, 50), 
+        valor_aleatorio_entre(-50, 50), 
+        valor_aleatorio_entre(-50, 50)
+    ];
+    numero INT;
+    contador INT := 0;
+
+BEGIN
+    FOREACH numero IN ARRAY todos_numeros LOOP
+        IF numero > 0 THEN
+        contador := contador + 1;
+        END IF;
+
+    END LOOP;
+    RAISE NOTICE '%', todos_numeros;
+    RAISE NOTICE '';
+    RAISE NOTICE '% valores positivos', contador;
+
+END;
+$$
