@@ -390,3 +390,42 @@ BEGIN
     END IF;
 END;
 $$
+
+--Exercicio 1.1 - Sum of Consecutive Odd Numbers I com FOR
+DO
+$$
+DECLARE
+    numero1 INT := valor_aleatorio_entre(20,50);
+    numero2 INT := valor_aleatorio_Entre(20,50);
+    soma INT := 0;
+BEGIN
+    IF numero1 > numero2 THEN
+        FOR i IN numero2 + 1..numero1 - 1 LOOP
+            IF i % 2 <> 0 THEN
+                soma = soma + i;
+            END IF;
+        END LOOP;
+        RAISE NOTICE '%', numero1;
+        RAISE NOTICE '%', numero2;
+        RAISE NOTICE '';
+        RAISE NOTICE '%', soma;
+    ELSEIF numero2 > numero1 THEN
+        FOR i IN numero1 + 1..numero2 -1 LOOP
+            IF i % 2 <> 0 THEN
+                soma = soma + i;
+            END IF;
+        END LOOP;
+        RAISE NOTICE '%', numero1;
+        RAISE NOTICE '%', numero2;
+        RAISE NOTICE '';
+        RAISE NOTICE '%', soma;
+    ELSE
+        RAISE NOTICE '%', numero1;
+        RAISE NOTICE '%', numero2;
+        RAISE NOTICE '';
+        RAISE NOTICE '%', soma;
+
+    END IF;
+END;
+$$
+
