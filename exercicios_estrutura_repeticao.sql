@@ -429,3 +429,46 @@ BEGIN
 END;
 $$
 
+--Exercicio 1.1 - Sum of Consecutive Odd Numbers I com FOREACH
+DO
+$$
+DECLARE
+    numeros INT [] := ARRAY[
+        valor_aleatorio_entre(20,50),
+        valor_aleatorio_entre(20,50)
+    ];
+    numero INT;
+    soma INT := 0;
+    diferenca INT[];
+BEGIN
+    IF numeros[1] > numeros[2] THEN
+        diferenca := ARRAY(SELECT generate_series(numeros[2] + 1, numeros[1] - 1));
+        FOREACH numero IN ARRAY diferenca LOOP
+            IF numero % 2 <> 0 THEN
+                soma = soma + numero;
+            END IF;
+        END LOOP;
+        RAISE NOTICE '%', numeros[1];
+        RAISE NOTICE '%', numeros[2];
+        RAISE NOTICE '';
+        RAISE NOTICE '%', soma;
+    ELSEIF numeros[2] > numeros[1] THEN
+        diferenca := ARRAY(SELECT generate_series(numeros[1] + 1, numeros[2] - 1));
+        FOREACH numero IN ARRAY diferenca LOOP
+            IF numero % 2 <> 0 THEN
+                soma = soma + numero;
+            END IF;
+        END LOOP;
+        RAISE NOTICE '%', numeros[1];
+        RAISE NOTICE '%', numeros[2];
+        RAISE NOTICE ''; 
+        RAISE NOTICE '%', soma;
+    ELSE
+        RAISE NOTICE '%', numeros[1];
+        RAISE NOTICE '%', numeros[2];
+        RAISE NOTICE '';
+        RAISE NOTICE '%', soma;
+
+    END IF;
+END;
+$$
