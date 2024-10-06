@@ -29,3 +29,15 @@ BEGIN
     END LOOP;
 END;
 $$
+
+--Exercicio 1.1 - Even Numbers com FOR
+DO
+$$
+BEGIN
+    FOR i IN 1..100 LOOP
+        CONTINUE WHEN i % 2 <> 0;
+            RAISE NOTICE '%', i;
+    END LOOP;
+END;
+$$
+
