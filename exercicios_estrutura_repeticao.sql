@@ -634,3 +634,25 @@ BEGIN
     END IF;
 END;
 $$
+
+--Exercicio 1.2
+DO $$
+DECLARE
+    matriz INT[] := ARRAY[
+        [valor_aleatorio_entre(1, 12), valor_aleatorio_entre(1, 12), valor_aleatorio_entre(1, 12)],
+        [valor_aleatorio_entre(1, 12), valor_aleatorio_entre(1, 12), valor_aleatorio_entre(1, 12)],
+        [valor_aleatorio_entre(1, 12), valor_aleatorio_entre(1, 12), valor_aleatorio_entre(1, 12)]
+    ];
+
+    determinante INT;
+BEGIN
+    determinante := matriz[1][1] * matriz[2][2] * matriz[3][3]
+                   + matriz[1][2] * matriz[2][3] * matriz[3][1]
+                   + matriz[1][3] * matriz[2][1] * matriz[3][2]
+                   - matriz[1][3] * matriz[2][2] * matriz[3][1]
+                   - matriz[1][2] * matriz[2][1] * matriz[3][3]
+                   - matriz[1][1] * matriz[2][3] * matriz[3][2];
+    RAISE NOTICE 'matriz = %', matriz;
+    RAISE NOTICE 'O determinante da matriz é: %', determinante;
+END;
+$$
