@@ -592,3 +592,45 @@ BEGIN
     END IF;
 END;
 $$
+
+--Exercicio 1.1 - Sequence of Numbers and Sum com FOREACH
+DO
+$$
+DECLARE
+    numeros_m_n INT [] := ARRAY [
+        valor_aleatorio_entre(1, 100),
+        valor_aleatorio_entre(1, 100)
+    ];
+    numero INT;
+    soma INT := 0;
+    diferenca INT[];
+    resultado_linha VARCHAR(450) := '';
+BEGIN
+    IF numeros_m_n[1] > numeros_m_n[2] THEN
+        diferenca := ARRAY(SELECT generate_series(numeros_m_n[2], numeros_m_n[1]));
+        FOREACH numero IN ARRAY diferenca LOOP
+            resultado_linha := resultado_linha ||numero|| ' ';
+            soma = soma + numero;
+        END LOOP;
+        RAISE NOTICE 'm = %', numeros_m_n[1];
+        RAISE NOTICE 'n = %', numeros_m_n[2];
+        RAISE NOTICE '';
+        RAISE NOTICE '% SUM =  %', resultado_linha, soma;
+    ELSEIF numeros_m_n[2] > numeros_m_n[1] THEN
+        diferenca := ARRAY(SELECT generate_series(numeros_m_n[1], numeros_m_n[2]));
+        FOREACH numero IN ARRAY diferenca LOOP
+            resultado_linha := resultado_linha ||numero|| ' ';
+            soma = soma + numero;
+        END LOOP;
+        RAISE NOTICE 'm = %', numeros_m_n[1];
+        RAISE NOTICE 'n = %', numeros_m_n[2];
+        RAISE NOTICE '';
+        RAISE NOTICE '% SUM = %', resultado_linha, soma;
+    ELSE
+        RAISE NOTICE 'm = %', numeros_m_n[1];
+        RAISE NOTICE 'n = %', numeros_m_n[2];
+        RAISE NOTICE '';
+        RAISE NOTICE '% SUM = %', numeros_m_n[1], numeros_m_n[1];
+    END IF;
+END;
+$$
