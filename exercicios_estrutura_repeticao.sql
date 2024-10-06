@@ -302,3 +302,49 @@ BEGIN
 
 END;
 $$
+
+--Exercicio 1.1 - Sum of Consecutive Odd Numbers I com LOOP
+DO
+$$
+DECLARE
+    numero1 INT := valor_aleatorio_entre(20,50);
+    numero2 INT := valor_aleatorio_entre(20,50);
+    contador INT;
+    soma INT := 0;
+BEGIN
+    IF numero1 > numero2 THEN
+        contador := numero2;
+        LOOP
+            contador := contador + 1;
+            IF contador % 2 <> 0 THEN
+                soma = soma + contador;
+            END IF;
+            EXIT WHEN contador >= numero1 -1;
+        END LOOP;
+        RAISE NOTICE '%', numero1;
+        RAISE NOTICE '%', numero2;
+        RAISE NOTICE '';
+        RAISE NOTICE '%', soma;
+    ELSEIF numero2 > numero1 THEN
+        contador := numero1;
+        LOOP
+            contador := contador + 1;
+            IF contador % 2 <> 0 THEN
+                soma = soma + contador;
+            END IF;
+            EXIT WHEN contador >= numero2 - 1;
+        END LOOP;
+        RAISE NOTICE '%', numero1;
+        RAISE NOTICE '%', numero2;
+        RAISE NOTICE '';
+        RAISE NOTICE '%', soma;
+    ELSE
+        RAISE NOTICE '%', numero1;
+        RAISE NOTICE '%', numero2;
+        RAISE NOTICE '';
+        RAISE NOTICE '%', soma;
+
+    END IF;
+END;
+$$
+
