@@ -472,3 +472,46 @@ BEGIN
     END IF;
 END;
 $$
+
+--Exercicio 1.1 - Sequence of Numbers and Sum com LOOP
+DO
+$$
+DECLARE
+    m INT := valor_aleatorio_entre(1, 100);
+    n INT := valor_aleatorio_entre(1, 100);
+    contador INT;
+    soma INT :=0;
+    resultado_linha VARCHAR(450) := '';
+BEGIN
+    IF m > n THEN
+        contador := n;
+        LOOP
+            resultado_linha := resultado_linha ||contador|| ' ';
+            soma := soma + contador;
+            contador := contador + 1;
+            EXIT WHEN contador > m;
+        END LOOP;
+        RAISE NOTICE 'm = %', m;
+        RAISE NOTICE 'n = %', n;
+        RAISE NOTICE '';
+        RAISE NOTICE '% SUM = %', resultado_linha, soma;
+    ELSEIF n > m THEN
+        contador := m;
+        LOOP
+            resultado_linha := resultado_linha ||contador|| ' ';
+            soma := soma + contador;
+            contador := contador + 1;
+            EXIT WHEN contador >  n;
+        END LOOP;
+        RAISE NOTICE 'm = %', m;
+        RAISE NOTICE 'n = %', n;
+        RAISE NOTICE '';
+        RAISE NOTICE '% SUM = %', resultado_linha, soma;
+    ELSE
+        RAISE NOTICE 'm = %', m;
+        RAISE NOTICE 'n = %', n;
+        RAISE NOTICE '';
+        RAISE NOTICE '% SUM = %', m, m;
+    END IF;
+END;
+$$
